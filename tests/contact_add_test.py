@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-from selenium.webdriver.firefox.webdriver import WebDriver
-import unittest
-from application import Application
+
+from fixture.application import Application
 
 
 @pytest.fixture
