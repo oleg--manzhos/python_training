@@ -22,3 +22,7 @@ class Application:
     def return_home_page(self):
         wd = self.wd
         wd.find_element_by_link_text("home page").click()
+
+    def goto_home_page(self):
+        wd = self.wd
+        wd.find_element_by_link_text("home").click()

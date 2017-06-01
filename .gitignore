@@ -1,3 +1,5 @@
 .idea
 env/
-.cache
+.cache/
+fixture/__pycache__/
+__pycache__/
