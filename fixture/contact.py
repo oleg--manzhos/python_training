@@ -6,31 +6,19 @@ class ContactHelper:
     def create(self, contact):
         wd = self.app.wd
         self.goto_contact_creation()
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact.first_name)
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(contact.last_name)
-        wd.find_element_by_name("nickname").click()
-        wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys(contact.nick_name)
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.change_field_value("firstname", contact.first_name)
+        self.change_field_value("lastname", contact.last_name)
+        self.change_field_value("nickname", contact.nick_name)
+        wd.find_element_by_name("submit").click()
         self.app.goto_home_page()
 
-    def modify(self, first_name, last_name, nick_name):
+    def modify(self, contact):
         wd = self.app.wd
         self.init_contact_modification()
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(first_name)
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(last_name)
-        wd.find_element_by_name("nickname").click()
-        wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys(nick_name)
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.change_field_value("firstname", contact.first_name)
+        self.change_field_value("lastname", contact.last_name)
+        self.change_field_value("nickname", contact.nick_name)
+        wd.find_element_by_name("update").click()
         self.app.goto_home_page()
 
     def delete_first_contact(self):
@@ -46,3 +34,10 @@ class ContactHelper:
     def init_contact_modification(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//img[@title='Edit']").click()
+
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
